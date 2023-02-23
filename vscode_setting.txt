@@ -51,6 +51,33 @@ javascript.json
     ],
     "description": "Generate Basic Vue Code"
 },
+"map": {
+    "prefix": "mp",
+    "body": [
+      "$1.map((item,index)=>{      ",
+      "  $2    ",
+      "})"
+    ],
+    "description": "map"
+},
+"forEach": {
+    "prefix": "fe",
+    "body": [
+      "$1.forEach((item,index)=>{      ",
+      "  $2    ",
+      "})"
+    ],
+    "description": "forEach"
+},
+"filter": {
+    "prefix": "fl",
+    "body": [
+      "$1.filter((item,index)=>{      ",
+      "  $2    ",
+      "})"
+    ],
+    "description": "filter"
+},
 ------------------------------------------------------------------------------------------------
 java.json  
 "ControllerComment": {
