@@ -10,6 +10,11 @@ ctrl+shift+p => snippets 검색
     "body": ["function $1($2) {", "  ${3:${CLIPBOARD}}", "}"],
     "description": "Function From Clipboard"
 },
+"method From Clipboard": {
+    "prefix": "mfc",
+    "body": ["public $1 $2($3) {", "  ${4:${CLIPBOARD}}", "}"],
+    "description": "method From Clipboard"
+},
 "default comment": {        
     "prefix": "comment",
     "body": [
