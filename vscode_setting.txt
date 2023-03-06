@@ -16,7 +16,7 @@ ctrl+shift+p => snippets 검색
     "description": "method From Clipboard"
 },
 "default comment": {        
-    "prefix": "comment",
+    "prefix": "dm",
     "body": [
         "/**",
         " * <pre>",
