@@ -83,6 +83,20 @@ javascript.json
     ],
     "description": "filter"
 },
+"vue store": {
+    "prefix": "vue-dispatch",
+    "body": [
+      "this.\\$store.dispatch(\"$1\");"
+    ],
+    "description": "vue store dispatch"
+},
+"vue store commit": {
+    "prefix": "vue-commit",
+    "body": [
+      "this.\\$store.commit(\"$1\");"
+    ],
+    "description": "vue store commit"
+},
 ------------------------------------------------------------------------------------------------
 java.json  
 "ControllerComment": {
