@@ -83,7 +83,7 @@ javascript.json
     ],
     "description": "filter"
 },
-"vue store": {
+"vue store dispatch": {
     "prefix": "vue-dispatch",
     "body": [
       "this.\\$store.dispatch(\"$1\");"
