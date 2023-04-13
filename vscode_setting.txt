@@ -98,30 +98,45 @@ javascript.json
     "description": "vue store commit"
 },
 "serviceFunction": {
-    "prefix": "serviceFn",
-    "body": [
-      "async $1(){        ",
-      "        try {",
-      "            const res = await customAxios.postWithObject(\"$3\", user);",
-      "            const result = res.data.result;",
-      "            const response = {",
-      "                replMsg: result['RESPONSE_MSG'],",
-      "                bTF: false,",
-      "            };",
-      "            if (result[\"RESPONSE_CODE\"] == \"000000\") {",
-      "                response.bTF = true;",
-      "",
-      "            } else {",
-      "                response.bTF = false;",
-      "",
-      "            }",
-      "            return response;",
-      "        } catch (err) {",
-      "            store.commit(\"Notification/onOpenAlertBar\", `$2 에러 - [${err}]`);",
-      "        }",
-      "    },"
-    ],
-    "description": "serviceFunction"
+  "prefix": "serviceFunction",
+  "body": [
+    "async $1(){        ",
+    "    try {",
+    "        const res = await customAxios.postWithObject(\"$3\", user);",
+    "        const result = res.data.result;",
+    "        const response = {",
+    "            replMsg: result['RESPONSE_MSG'],",
+    "            bTF: false,",
+    "        };",
+    "        if (result[\"RESPONSE_CODE\"] == \"000000\") {",
+    "            response.bTF = true;",
+    "",
+    "        } else {",
+    "            response.bTF = false;",
+    "",
+    "        }",
+    "        return response;",
+    "    } catch (err) {",
+    "        store.commit(\"Notification/onOpenAlertBar\", `$2 에러 - [err]`);",
+    "    }",
+    "},"
+  ],
+  "description": "serviceFunction"
+},
+"controllerMethod": {
+  "prefix": "controllerMethod",
+  "body": [
+    "@ResponseBody",
+    "@RequestMapping(value = {\"$1\"}, method = {RequestMethod.POST,RequestMethod.GET})",
+    "public ModelAndView $2(@ModelAttribute(\"initBoxs\")PBox pBox,HttpServletRequest request) {",
+    "    ModelAndView mv = new ModelAndView(\"jsonView\");",
+    "    PBox result = $3;",
+    "    mv.addObject(\"result\", result);        ",
+    "    return mv;",
+    "}",
+    ""
+  ],
+  "description": "controllerMethod"
 },
 ------------------------------------------------------------------------------------------------
 java.json  
