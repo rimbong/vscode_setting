@@ -57,31 +57,49 @@ javascript.json
     "description": "Generate Basic Vue Code"
 },
 "map": {
-    "prefix": "mp",
+    "prefix": "f-mp",
     "body": [
-      "$1.map((item,index)=>{      ",
+      "map((item,index)=>{      ",
       "  $2    ",
       "})"
     ],
     "description": "map"
 },
 "forEach": {
-    "prefix": "fe",
+    "prefix": "f-fe",
     "body": [
-      "$1.forEach((item,index)=>{      ",
+      "forEach((item,index)=>{      ",
       "  $2    ",
       "})"
     ],
     "description": "forEach"
 },
 "filter": {
-    "prefix": "fl",
+    "prefix": "f-fl",
     "body": [
-      "$1.filter((item,index)=>{      ",
+      "filter((item,index)=>{      ",
       "  $2    ",
       "})"
     ],
     "description": "filter"
+},
+"find": {
+    "prefix": "f-fd",
+    "body": [
+      "find((item,index)=>{      ",
+      "  $2    ",
+      "})"
+    ],
+    "description": "filter"
+},
+"promise then": {
+    "prefix": "then",
+    "body": [
+      "then((result) => {",
+      "            ",
+      "});"
+    ],
+    "description": "promise then"
 },
 "vue store dispatch": {
     "prefix": "vue-dispatch",
