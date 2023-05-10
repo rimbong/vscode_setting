@@ -93,7 +93,7 @@ javascript.json
     "description": "filter"
 },
 "void": {
-    "prefix": "void",
+    "prefix": "js:void",
     "body": [
       "javascript:void(0);"
     ],
@@ -107,6 +107,13 @@ javascript.json
       "});"
     ],
     "description": "promise then"
+},
+"hasOwnProperty": {
+    "prefix": "hasOwnProperty",
+    "body": [
+      "Object.hasOwnProperty.call($1)"
+    ],
+    "description": "hasOwnProperty"
 },
 "vue store dispatch": {
     "prefix": "vue-dispatch",
