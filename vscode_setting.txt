@@ -155,21 +155,7 @@ javascript.json
   ],
   "description": "serviceFunction"
 },
-"controllerMethod": {
-  "prefix": "controllerMethod",
-  "body": [
-    "@ResponseBody",
-    "@RequestMapping(value = {\"$1\"}, method = {RequestMethod.POST,RequestMethod.GET})",
-    "public ModelAndView $2(@ModelAttribute(\"initBoxs\")PBox pBox,HttpServletRequest request) {",
-    "    ModelAndView mv = new ModelAndView(\"jsonView\");",
-    "    PBox result = $3;",
-    "    mv.addObject(\"result\", result);        ",
-    "    return mv;",
-    "}",
-    ""
-  ],
-  "description": "controllerMethod"
-},
+
 ------------------------------------------------------------------------------------------------
 java.json  
 "ControllerComment": {
@@ -199,6 +185,54 @@ java.json
         " */"
     ],
     "description": "comment"
+},
+"controllerMethod": {
+  "prefix": "controllerMethod",
+  "body": [
+    "@ResponseBody",
+    "@RequestMapping(value = {\"$1\"}, method = {RequestMethod.POST,RequestMethod.GET})",
+    "public ModelAndView $2(@ModelAttribute(\"initBoxs\")PBox pBox,HttpServletRequest request) {",
+    "    ModelAndView mv = new ModelAndView(\"jsonView\");",
+    "    PBox result = $3;",
+    "    mv.addObject(\"result\", result);        ",
+    "    return mv;",
+    "}",
+    ""
+  ],
+  "description": "controllerMethod"
+},
+"serviceMethod": {
+  "prefix": "serviceMethod",
+  "body": [
+    "@Override",
+    "@Transactional",
+    "public PBox $1(PBox pBox) {",
+    "",
+    "    PBox result = new PBox();",
+    "    String RESPONSE_CODE = \"000000\";",
+    "    StringBuilder refreshToken = null;",
+    "    ",
+    "    try {",
+    "        if () {",
+    "            throw new BizException(\"\");",
+    "        }",
+    "",
+    "    } catch (BizException biz) {",
+    "        rollBack();",
+    "        RESPONSE_CODE = biz.getErrCode();",
+    "        biz.printStackTrace();",
+    "    } catch (Exception e) {",
+    "        rollBack();",
+    "        RESPONSE_CODE = \"\";",
+    "        e.printStackTrace();",
+    "    } finally {",
+    "        result.set(\"RESPONSE_CODE\", RESPONSE_CODE);",
+    "        result.set(\"RESPONSE_MSG\", EErrorCodeType.searchAndMsg(RESPONSE_CODE));",
+    "    }",
+    "    return result;",
+    "}"
+  ],
+  "description": "serviceMethod"
 },
 ------------------------------------------------------------------------------------------------
 xml.json
