@@ -129,6 +129,13 @@ javascript.json
     ],
     "description": "vue store commit"
 },
+"emit": {
+    "prefix": "vue-emit",
+    "body": [
+      "this.\\$emit(\"$1\")"
+    ],
+    "description": "emit"
+},
 "serviceFunction": {
     "prefix": "serviceFunction",
     "body": [
