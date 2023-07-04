@@ -28,7 +28,7 @@ ctrl+shift+p => snippets 검색
         " */"           
     ],
     "description": "comment"
-}
+},
 ------------------------------------------------------------------------------------------------
 jsp
 "scriptlet": {
@@ -37,7 +37,7 @@ jsp
     "<%  %>"
   ],
   "description": "scriptlet"
-}
+},
 ------------------------------------------------------------------------------------------------
  vue.json 선택
 "Generate Basic Vue Code":{
@@ -139,10 +139,10 @@ javascript.json
 "serviceFunction": {
     "prefix": "serviceFunction",
     "body": [
-      "async $1(){        ",
+      "async $1(val){        ",
       "    try {",
-      "        const serviceResult = await customAxios.postWithObject(\"$3\", user);",
-      "        const result = res.data.result;",
+      "        const serviceResult = await customAxios.postWithObject(\"$3\", val);",
+      "        const result = serviceResult.data.result;",
       "        const response = {",
       "            replMsg: result['RESPONSE_MSG'],",
       "            bTF: false,",
@@ -248,8 +248,9 @@ xml.json
     "body": [
       "<!--  -->",
       "<select id=\"\" parameterType=\"com.common.collection.PBox\" resultType=\"com.common.collection.PBox\">",
-      " <![CDATA[       ",
-      " ]]>",
+      "<![CDATA[",
+  "\t$1",
+      "]]>",
       "</select>"
     ],
     "description": "select"
@@ -259,8 +260,9 @@ xml.json
   "body": [
     "<!--  -->",
     "<insert id=\"\" parameterType=\"com.common.collection.PBox\">",
-    "   <![CDATA[",
-    "   ]]>",
+    "<![CDATA[",
+    "\t$1",
+    "]]>",
     "</insert>"
   ],
   "description": "insert"
@@ -268,8 +270,10 @@ xml.json
 "update ": {
   "prefix": "updatexml",
   "body": [
+    "<!--  -->",
     "<update id=\"\" parameterType=\"com.common.collection.PBox\">",
-    "<![CDATA[      ",
+    "<![CDATA[",
+    "\t$1",
     "]]>",
     "</update>"
   ],
