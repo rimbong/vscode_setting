@@ -162,7 +162,83 @@ javascript.json
     ],
     "description": "serviceFunction"    
 },
-
+"nn-new_nhhtp": {
+    "prefix": "nn-newNHttpBase",
+    "body": [
+      "var InNHttpCtrl = new NHttpCtrlBase();",
+      "InNHttpCtrl.SetASync(true);",
+      "InNHttpCtrl.url = g_strSite + \"$1\";",
+      "",
+      "",
+      "InNHttpCtrl.Post({",
+      "    success : function () { ",
+      "        var result = JSON.parse(InNHttpCtrl.Info);",
+      "    },fail : function (x) {          ",
+      "        alert('알 수 없는 이유로 인해 실패하였습니다.')",
+      "    }",
+      "})"
+    ],
+    "description": "nn-new_nhhtp"
+},
+"nn-new_nhhtp_add": {
+    "prefix": "nn-newNHttpBaseAdd",
+    "body": [
+      "InNHttpCtrl.AddData ( \"$1\", \"$2\" );"
+    ],
+    "description": "nn-new_nhhtp_add"
+},
+"nn-nhhtp_add": {
+    "prefix": "nn-NHttpBaseAdd",
+    "body": [
+      "NHttpCtrl.AddData ( \"$1\", \"$2\" );"
+    ],
+    "description": "nn-nhhtp_add"
+},
+"nn-nhhtp": {
+    "prefix": "nn-NHttpBase",
+    "body": [
+        "NHttpCtrl.url = g_strSite + $1 + $2;",
+        "",
+        "if ( false == NHttpCtrl.Post() ) {",
+        "    // post 실패 이유를 알려준다.",
+        "    NHttpCtrl.showPostErrInfo();",     
+        "    if (typeof(_callBackFunc) == \"function\") {",
+        "        _callBackFunc(false);",
+        "    }",
+        "    return false;",
+        "}",
+        "if ( CONSTSTR_PROTSTATUS_ERROR != NHttpCtrl.Status ) {",
+        "    // 성공",
+        "",
+        "} else{",
+        "    // 실패",
+        "    NHttpCtrl.showDetailErrInfo();",
+        "    if (typeof _callBackFunc == \"function\") {",
+        "        _callBackFunc(false);",
+        "    }",
+        "    return false;",
+        "}"
+    ],
+    "description": "nn-nhhtp"
+},
+"nn-nalert": {
+    "prefix": "nn-alert",
+    "body": [
+      "NFAlert(XFLocale.getString(\"lang.flow\", \"$1\"));"
+    ],
+    "description": "nn-nalert"
+},
+"nn-fileMng": {
+    "prefix": "n-isFileMng",
+    "body": [
+      "if(isIE() && NFGetOption(\"./site_config/use_filemng\") == \"yes\") {",
+      "    $1",
+      "}else{",
+      "",
+      "}"
+    ],
+    "description": "nn-fileMng"
+},
 ------------------------------------------------------------------------------------------------
 java.json  
 "ControllerComment": {
@@ -241,6 +317,52 @@ java.json
   ],
   "description": "serviceMethod"
 },
+"nn-try_catch-servlet": {
+    "prefix": "n-trycatch-servlet",
+    "body": [
+      "try {        ",
+      "    $1",
+      "} catch ( NNException e ) {",
+      "    out.print(e.getXml());",
+      "    ",
+      "} catch ( Exception e ) {",
+      "    throw e;",
+      "} finally{",
+      "",
+      "}"
+    ],
+    "description": "nn-try_catch"
+},
+"nn-println": {
+    "prefix": "n-println",
+    "body": [
+      "out.println( XFServletReturnMsg.getMessage( $1 ) );"
+    ],
+    "description": "nn-println"
+},
+"nn-receiver-println": {
+  "prefix": "n-receiver-println",
+  "body": [
+    "out.print( Receiver.getSuccessXML( $1 ) );"
+  ],
+  "description": "n-receiver-println"
+},
+"nn-try_catch": {
+    "prefix": "n-trycatch",
+    "body": [
+      "try {        ",
+      "    $1",
+      "} catch ( NNException e ) {",
+      "    throw e",
+      "} catch ( Exception e ) {",
+      "    throw e;",
+      "} finally{",
+      "    // SQLUtil.close();",
+      "}"
+    ],
+    "description": "nn-try_catch"
+},
+
 ------------------------------------------------------------------------------------------------
 xml.json
 "select": {
@@ -279,7 +401,84 @@ xml.json
   ],
   "description": "update "
 },
-
+"nn-list-xml": {
+  "prefix": "n-list-xml",
+  "body": [
+    "<tag-name>",
+    " <boxtype></boxtype>",
+    "    <group id=\"0\" textcolor=\"#000000\" />",
+    " <column>",
+    "   <id></id>",
+    "   <name></name>",
+    "   <key></key>",
+    "   <width></width>",
+    "   <align></align>",
+    "   <type></type>",
+    " </column>",
+    " <userdata></userdata>",
+    "</tag-name>"
+  ],
+  "description": "nn-list-xml"
+},
+"nn-list-config": {
+  "prefix": "n-list-config",
+  "body": [
+    "<tag-name>",
+    "    <configcount>1</configcount>",
+    "    <config index=\"0\">",
+    "        <name>dateformat</name>",
+    "        <value>year/month/day hour:min</value>",
+    "    </config>",
+    "",
+    "    <columncount>1</columncount>",
+    "    <column index=\"0\">",
+    "        <columnlabel></columnlabel>",
+    "        <columnwidth></columnwidth>",
+    "        <columnalign></columnalign>",
+    "        <columntype></columntype>",
+    "        <columnimage></columnimage>",
+    "",
+    "        <fieldvalue></fieldvalue>",
+    "        <fieldimage></fieldimage>",
+    "        <fieldcheck></fieldcheck>",
+    "        <columnid></columnid>",
+    "    </column>",
+    "    ",
+    "    <recordgroup></recordgroup>",
+    "    <recordid></recordid>",
+    "    <userdatacount>1</userdatacount>",
+    "    <userdata index=\"0\">",
+    "        <tag></tag>",
+    "        <val></val>",
+    "    </userdata>",
+    "    ",
+    "</tag-name>",
+    ""
+  ],
+  "description": "nn-list-config"
+},
+"nn-button-xml": {
+  "prefix": "n-button-xml",
+  "body": [
+    "<tag-name>",
+    "    <button>",
+    "        <id></id>",
+    "        <width></width>",
+    "        <height></height>",
+    "        <text></text>",
+    "        <image></image>",
+    "        <tooltip></tooltip>",
+    "        <toggle></toggle>",
+    "        <toggle_status></toggle_status>",
+    "        <visible></visible>",
+    "        <disabled></disabled>",
+    "        <td_align></td_align>",
+    "        <td_width></td_width>",
+    "    </button>",
+    "</tag-name>"
+  ],
+  "description": "nn-button-xml"
+}
 ------------------------------------------------------------------------------------------------
 주석 색깔
 "editor.tokenColorCustomizations": {
