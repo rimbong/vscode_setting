@@ -5,39 +5,286 @@ ctrl+shift+p => snippets 검색
 
 ------------------------------------------------------------------------------------------------
 전역 snippet
-"Function From Clipboard": {
-    "prefix": "ffc",
-    "body": ["function $1($2) {", "  ${3:${CLIPBOARD}}", "}"],
-    "description": "Function From Clipboard"
-},
-"method From Clipboard": {
-    "prefix": "mfc",
-    "body": ["public $1 $2($3) {", "  ${4:${CLIPBOARD}}", "}"],
-    "description": "method From Clipboard"
-},
-"default comment": {        
-    "prefix": "dm",
-    "body": [
-        "/**",
-        " * <pre>",
-        " *   ${TM_FILENAME_BASE} ",
-        " * </pre>",
-        " * @author In-seong Hwang",
-        " * @since ${CURRENT_YEAR}.${CURRENT_MONTH}.${CURRENT_DATE}",
-        " * @version 1.0",
-        " */"           
-    ],
-    "description": "comment"
-},
-------------------------------------------------------------------------------------------------
-jsp
-"scriptlet": {
-  "prefix": "scriptlet",
-  "body": [
-    "<%  %>"
-  ],
-  "description": "scriptlet"
-},
+
+		"Function From Clipboard": {
+		"prefix": "ffc",
+		"body": ["function $1($2) {", "  ${3:${CLIPBOARD}}", "}"],
+		"description": "Function From Clipboard"
+	},
+	"method From Clipboard": {
+		"prefix": "mfc",
+		"body": ["public $1 $2($3) {", "  ${4:${CLIPBOARD}}", "}"],
+		"description": "method From Clipboard"
+	},
+	"default comment": {        
+		"prefix": "default-comment",
+		"body": [
+			"/**",
+			" * <pre>",
+			" *   ${TM_FILENAME_BASE} ",
+			" * </pre>",
+			" * @author In-seong Hwang",
+			" * @since ${CURRENT_YEAR}.${CURRENT_MONTH}.${CURRENT_DATE}",
+			" * @version 1.0",
+			" */"           
+		],
+		"description": "comment"
+	},
+	"scriptlet": {
+		"prefix": "scriptlet",
+		"body": [
+		  "<%"
+		  "$1",
+		  "%>"
+		],
+		"description": "scriptlet"
+	},
+	"scriptlet-expression": {
+		"prefix": "scriptlet-expression",
+		"body": [
+		  "<%="
+		  "$1",
+		  "%>"
+		],
+		"description": "scriptlet"
+	},
+	"scriptlet-comment": {
+		"prefix": "scriptlet-comment",
+		"body": [
+		  "<%--"
+		  "$1",
+		  "--%>"
+		],
+		"description": "scriptlet"
+	},
+	"void": {
+		"prefix": "js:void",
+		"body": [
+		  "javascript:void(0);"
+		],
+		"description": "void"
+	},
+	"jstl-core": {
+		"prefix": "jstl-core",
+		"body": [
+		  "<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\"%>"
+		],
+		"description": "jstl-core"
+	},
+	"jstl-fmt": {
+		"prefix": "jstl-fmt",
+		"body": [
+		  "<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>"
+		],
+		"description": "jstl-fmt"
+	},
+    "c-out": {
+        "prefix": "c-out",
+        "body": [
+          "<c:out value=\"${1:value}\"/>"
+        ],
+        "description": "c-out"
+    },
+    "c-remove ": {
+        "prefix": "c-remove ",
+        "body": [
+          "<c:remove var=\"${1:var}\"/>"
+        ],
+        "description": "c-remove "
+    },
+	"c-set": {
+		"prefix": "c-set",
+		"body": [
+		  "<c:set var=\"${1:var}\" value=\"${$2}\" />",
+		],
+		"description": "c-set"
+	},
+	"c-if": {
+		"prefix": "c-if",
+		"body": [
+		  "<c:if test=\"${$1}\">",
+		  "    $2",
+		  "</c:if>",
+		],
+		"description": "c-if"
+	},
+	"c-choose-when": {
+		"prefix": "c-choose-when",
+		"body": [
+		  "<c:choose>",
+		  "    <c:when test=\"${$1}\"> ",
+		  "    </c:when>",
+		  "    <c:otherwise>",
+		  "    </c:otherwise>",
+		  "</c:choose>",
+		],
+		"description": "c-choose-when"
+	},
+	"c-when": {
+		"prefix": "c-when",
+		"body": [
+		  "<c:when test=\"${$1}\"> ",
+		  "</c:when>",
+		],
+		"description": "c-when"
+	},
+	"c-foreach": {
+		"prefix": "c-foreach",
+		"body": [
+		  "<c:forEach var=\"${1:item}\" items=\"${$2}\" varStatus=\"${3:status}\">",
+		  "</c:forEach>",
+		],
+		"description": "c-foreach"
+	},
+	"c-foreach-begin": {
+		"prefix": "c-foreach-begin",
+		"body": [
+		  "<c:forEach begin=\"0\" end=\"10\" step=\"1\">",
+		  "</c:forEach>",
+		],
+		"description": "c-foreach-begin"
+	},
+    "fmt-setBundle": {
+        "prefix": "fmt-setBundle",
+        "body": [
+          "<fmt:setBundle basename=\"ResourceBundle Name\" var=\"value\"/>"
+        ],
+        "description": "fmt-setBundle"
+    },
+    "fmt-setLocale": {
+        "prefix": "fmt-setLocale",
+        "body": [
+          "<fmt:setLocale value=\"${1:language}\" />"
+        ],
+        "description": "fmt-setLocale"
+    },
+	"fmt-message": {
+		"prefix": "fmt-message",
+		"body": [
+		  "<fmt:message key='${1:key}' bundle="${}"/>"
+		],
+		"description": "fmt-message"
+	},
+	"fmt-parseDate": {
+		"prefix": "fmt-parseDate",
+		"body": [
+		  "<fmt:parseDate var=\"${1:date}\" value=\"${2:2019-01-01}\" pattern=\"${3:yyyy-MM-dd}\"/> "
+		],
+		"description": "String To Date"
+	},
+	"fmt-formatDate": {
+		"prefix": "fmt-formatDate",
+		"body": [
+		  "<fmt:formatDate  var=\"${1:dateStr}\" value=\"${$2}\" pattern=\"yyyy-MM-dd\"/>"
+		],
+		"description": "fmt-formatDate"
+	},
+    "fn-contains": {
+        "prefix": "fn-contains",
+        "body": [
+          "fn:contains(${1:string}, ${2:sbustring})"
+        ],
+        "description": "fn-contains"
+    },
+
+    "fn-escapeXml": {
+        "prefix": "fn-escapeXml",
+        "body": [
+          "fn:escapeXml(${1:string})"
+        ],
+        "description": "fn-escapeXml"
+    },
+    "fn-indexOf": {
+        "prefix": "fn-indexOf",
+        "body": [
+          "fn:indexOf(${1:string}, ${2:sbustring})"
+        ],
+        "description": "fn-indexOf"
+    },
+    "fn-split": {
+        "prefix": "fn-split",
+        "body": [
+          "fn:split(${1:string}, ${2:separator})"
+        ],
+        "description": "fn-split"
+    },
+    "fn-join": {
+        "prefix": "fn-join",
+        "body": [
+          "fn:join(${1:array}, ${2:separator})"
+        ],
+        "description": "fn-join"
+    },
+    "fn-length": {
+        "prefix": "fn-length",
+        "body": [
+          "fn:length(${1:item})"
+        ],
+        "description": "fn-length"
+    },
+    "fn-replace": {
+        "prefix": "fn-replace",
+        "body": [
+          "fn:replace(${1:string}, ${2:before}, ${3:after})"
+        ],
+        "description": "fn-replace"
+    },
+    "fn-substring": {
+        "prefix": "fn-substring",
+        "body": [
+          "fn:substring(${1:string}, ${2:begin}, ${3:end})"
+        ],
+        "description": "fn-substring"
+    },
+    "fn-toLowerCase": {
+        "prefix": "fn-toLowerCase",
+        "body": [
+          "fn:toLowerCase(${1:string})"
+        ],
+        "description": "fn-toLowerCase"
+    },
+    "fn-toUpperCase": {
+        "prefix": "fn-toUpperCase",
+        "body": [
+          "fn:toUpperCase(${1:string})"
+        ],
+        "description": "fn-toUpperCase"
+    },
+    "fn-trim": {
+        "prefix": "fn-trim",
+        "body": [
+          "fn:trim(${1:string})"
+        ],
+        "description": "fn-trim"
+    },
+	"System.out.println": {
+		"prefix": "sout",
+		"body": [
+		  "System.out.println(\"${1:out}\");"
+		],
+		"description": "System.out.println"
+	},
+	"nn-siteoption": {
+		"prefix": "n-siteoption",
+		"body": [
+		  "LEGOManager.getOptionLEGOValue(\"siteoption\", \"${1:path}\", \"${2:default}\");"
+		],
+		"description": "nn-siteoption"
+	},
+	"nn-pageContext": {
+		"prefix": "n-pageContext",
+		"body": [
+		  "pageContext.setAttribute( \"${1:key}\", ${2:value} );"
+		],
+		"description": "nn-pageContext"
+	},
+  "nn-attachReciver": {
+      "prefix": "n-attachReciver",
+      "body": [
+        "<iframe style=\"width:100px;height:1px;\" id=\"attachReciver\" name=\"attachReciver\" src=\"/nanum/cflow/document/sanc/empty.htm\" frameborder=\"0\" scrolling=\"no\"></iframe>"
+      ],
+      "description": "nn-attachReciver"
+  }
 ------------------------------------------------------------------------------------------------
  vue.json 선택
 "Generate Basic Vue Code":{
@@ -49,282 +296,570 @@ jsp
 },
 ------------------------------------------------------------------------------------------------
 javascript.json
-"Generate Basic Vuex Code":{
-    "prefix":"vuex-start",
-    "body": [
-        "export default {  \n\t namespaced: true,\n\t state: { },\n\t getters: { },\n\t mutations: { },\n\t actions: { },\n\t modules: { }\n }"
-    ],
-    "description": "Generate Basic Vue Code"
-},
-"map": {
-    "prefix": "f-mp",
-    "body": [
-      "map((item,index)=>{      ",
-      "  $2    ",
-      "})"
-    ],
-    "description": "map"
-},
-"forEach": {
-    "prefix": "f-fe",
-    "body": [
-      "forEach((item,index)=>{      ",
-      "  $2    ",
-      "})"
-    ],
-    "description": "forEach"
-},
-"filter": {
-    "prefix": "f-fl",
-    "body": [
-      "filter((item,index)=>{      ",
-      "  $2    ",
-      "})"
-    ],
-    "description": "filter"
-},
-"find": {
-    "prefix": "f-fd",
-    "body": [
-      "find((item,index)=>{      ",
-      "  $2    ",
-      "})"
-    ],
-    "description": "filter"
-},
-"void": {
-    "prefix": "js:void",
-    "body": [
-      "javascript:void(0);"
-    ],
-    "description": "void"
-},
-"promise then": {
-    "prefix": "p-then",
-    "body": [
-      "then((result) => {",
-      "            ",
-      "});"
-    ],
-    "description": "promise then"
-},
-"hasOwnProperty": {
-    "prefix": "hasOwnProperty",
-    "body": [
-      "Object.hasOwnProperty.call($1)"
-    ],
-    "description": "hasOwnProperty"
-},
-"vue store dispatch": {
-    "prefix": "vue-dispatch",
-    "body": [
-      "this.\\$store.dispatch(\"$1\");"
-    ],
-    "description": "vue store dispatch"
-},
-"vue store commit": {
-    "prefix": "vue-commit",
-    "body": [
-      "this.\\$store.commit(\"$1\");"
-    ],
-    "description": "vue store commit"
-},
-"emit": {
-    "prefix": "vue-emit",
-    "body": [
-      "this.\\$emit(\"$1\")"
-    ],
-    "description": "emit"
-},
-"serviceFunction": {
-    "prefix": "serviceFunction",
-    "body": [
-      "async $1(val){        ",
-      "    try {",
-      "        const serviceResult = await customAxios.postWithObject(\"$3\", val);",
-      "        const result = serviceResult.data.result;",
-      "        const response = {",
-      "            replMsg: result['RESPONSE_MSG'],",
-      "            bTF: false,",
-      "        };",
-      "        if (result[\"RESPONSE_CODE\"] == \"000000\") {",
-      "            response.bTF = true;",
-      "",
-      "        } else {",
-      "            response.bTF = false;",
-      "",
-      "        }",
-      "        return response;",
-      "    } catch (err) {",
-      "        store.commit(\"Notification/onOpenAlertBar\", `$2 에러 - [\\${err}]`);",
-      "    }",
-      "},"
-    ],
-    "description": "serviceFunction"    
-},
-"nn-new_nhhtp": {
-    "prefix": "nn-newNHttpBase",
-    "body": [
-      "var InNHttpCtrl = new NHttpCtrlBase();",
-      "InNHttpCtrl.SetASync(true);",
-      "InNHttpCtrl.url = g_strSite + \"$1\";",
-      "",
-      "",
-      "InNHttpCtrl.Post({",
-      "    success : function () { ",
-      "        var result = JSON.parse(InNHttpCtrl.Info);",
-      "    },fail : function (x) {          ",
-      "        alert('알 수 없는 이유로 인해 실패하였습니다.')",
-      "    }",
-      "})"
-    ],
-    "description": "nn-new_nhhtp"
-},
-"nn-new_nhhtp_add": {
-    "prefix": "nn-newNHttpBaseAdd",
-    "body": [
-      "InNHttpCtrl.AddData ( \"$1\", \"$2\" );"
-    ],
-    "description": "nn-new_nhhtp_add"
-},
-"nn-nhhtp_add": {
-    "prefix": "nn-NHttpBaseAdd",
-    "body": [
-      "NHttpCtrl.AddData ( \"$1\", \"$2\" );"
-    ],
-    "description": "nn-nhhtp_add"
-},
-"nn-nhhtp": {
-    "prefix": "nn-NHttpBase",
-    "body": [
-        "NHttpCtrl.url = g_strSite + $1 + $2;",
-        "",
-        "if ( false == NHttpCtrl.Post() ) {",
-        "    // post 실패 이유를 알려준다.",
-        "    NHttpCtrl.showPostErrInfo();",     
-        "    if (typeof(_callBackFunc) == \"function\") {",
-        "        _callBackFunc(false);",
-        "    }",
-        "    return false;",
-        "}",
-        "if ( CONSTSTR_PROTSTATUS_ERROR != NHttpCtrl.Status ) {",
-        "    // 성공",
-        "",
-        "} else{",
-        "    // 실패",
-        "    NHttpCtrl.showDetailErrInfo();",
-        "    if (typeof _callBackFunc == \"function\") {",
-        "        _callBackFunc(false);",
-        "    }",
-        "    return false;",
-        "}"
-    ],
-    "description": "nn-nhhtp"
-},
-"nn-nalert": {
-    "prefix": "nn-alert",
-    "body": [
-      "NFAlert(XFLocale.getString(\"lang.flow\", \"$1\"));"
-    ],
-    "description": "nn-nalert"
-},
-"nn-fileMng": {
-    "prefix": "n-isFileMng",
-    "body": [
-      "if(isIE() && NFGetOption(\"./site_config/use_filemng\") == \"yes\") {",
-      "    $1",
-      "}else{",
-      "",
-      "}"
-    ],
-    "description": "nn-fileMng"
-},
+	"ajax": {
+		"prefix": "jq-ajax",
+		"body": [
+		  "$.ajax({",
+		  "		type :\"POST\",",
+		  "		url : \"${1:url}\",",
+		  "		dataType : \"${2:json}\",",
+		  "	    contentType : application/x-www-form-urlencoded,",
+		  "		async : true,",
+		  "		data : ${3:param},",		  
+		  "		success : function(response) {",
+		  "            ",
+		  "		},",
+		  "		error : function(xmlHttpRequest, textStatus, errorThrown) {",
+		  "			",
+		  "		}",
+		  "	});"
+		],
+		"description": [
+			"type : post / get ",
+			"url : 호출 url",
+			"dataType : 서버로부터 어떤 type으로 받을지 적는다. json/xml...",
+			"contentType : 서버로 보내는 데이터의 유형 / application/x-www-form-urlencoded ",
+			"async : 비동기식 과정의 유무 true/false,",
+			"data : 서버로 보낼 데이터 객체",
+			"headers : {서버로 보내는 header 정보 }",
+		  ]
+	},
+    "jq-propget": {
+        "prefix": "jqPropget",
+        "body": [
+          "$( '${1:selector}' ).prop( '${2:checked}' );"
+        ],
+        "description": "jq-propget"
+    },
+    "jq-propset": {
+        "prefix": "jqPropset",
+        "body": [
+          "$( '${1:selector}' ).prop( '${2:checked}', ${3:true} );"
+        ],
+        "description": "jq-propset"
+    },
+    "jq-is": {
+        "prefix": "jqIs",
+        "body": [
+          "$('${1:selector}').is('${2::checked}');"
+        ],
+        "description": "jq-is"
+    },
+    "jq-checkedbox": {
+        "prefix": "jqCheckedbox",
+        "body": [
+          "$(\"input[name='${1:checkBoxName}']\").each(function(){",
+          "    if( $(this).is(\":checked\") == true ){",
+          "      var checkVal = $(this).val();",
+          "      $2",
+          "    }",
+          "});"
+        ],
+        "description": "jq-checkedbox"
+    },
+    "jq-radioCheckedBox": {
+        "prefix": "jqRadioCheckedBox",
+        "body": [
+          "$(\"input:radio[name='${1:radioBoxName}']:checked\").val();"
+        ],
+        "description": "jq-radioCheckedBox"
+    },
+	"js comment": {
+		"prefix": "js-comment",
+		"body": [
+		  "/** ",
+		  " * @description",
+		  " *",
+		  " * @param ",
+		  " * @returns ",
+		  " */"
+		],
+		"description": "js comment"
+	},
+	"Generate Basic Vuex Code":{
+		"prefix":"vuex-start",
+		"body": [
+			"export default {  \n\t namespaced: true,\n\t state: { },\n\t getters: { },\n\t mutations: { },\n\t actions: { },\n\t modules: { }\n }"
+		],
+		"description": "Generate Basic Vue Code"
+	},
+	"map": {
+		"prefix": "f-mp",
+		"body": [
+		  "map((item,index)=>{      ",
+		  "  $2    ",
+		  "})"
+		],
+		"description": "map"
+	},
+	"forEach": {
+		"prefix": "f-fe",
+		"body": [
+		  "forEach((item,index)=>{      ",
+		  "  $2    ",
+		  "})"
+		],
+		"description": "forEach"
+	},
+	"filter": {
+		"prefix": "f-fl",
+		"body": [
+		  "filter((item,index)=>{      ",
+		  "  $2    ",
+		  "})"
+		],
+		"description": "filter"
+	},
+	"find": {
+		"prefix": "f-fd",
+		"body": [
+		  "find((item,index)=>{      ",
+		  "  $2    ",
+		  "})"
+		],
+		"description": "filter"
+	},
+	"void": {
+		"prefix": "js:void",
+		"body": [
+		  "javascript:void(0);"
+		],
+		"description": "void"
+	},
+	"promise then": {
+		"prefix": "p-then",
+		"body": [
+		  "then((result) => {",
+		  "            ",
+		  "});"
+		],
+		"description": "promise then"
+	},
+	"hasOwnProperty": {
+		"prefix": "hasOwnProperty",
+		"body": [
+		  "Object.prototype.hasOwnProperty.call(${1:obj},${2:property})"
+		],
+		"description": "hasOwnProperty"
+	},
+	"vue store dispatch": {
+		"prefix": "vue-dispatch",
+		"body": [
+		  "this.\\$store.dispatch(\"$1\");"
+		],
+		"description": "vue store dispatch"
+	},
+	"vue store commit": {
+		"prefix": "vue-commit",
+		"body": [
+		  "this.\\$store.commit(\"$1\");"
+		],
+		"description": "vue store commit"
+	},
+	"emit": {
+		"prefix": "vue-emit",
+		"body": [
+		  "this.\\$emit(\"$1\")"
+		],
+		"description": "emit"
+	},
+	"serviceFunction": {
+		"prefix": "serviceFunction",
+		"body": [
+		  "async $1(val){        ",
+		  "    try {",
+		  "        const serviceResult = await customAxios.postWithObject(\"$3\", val);",
+		  "        const result = serviceResult.data.result;",
+		  "        const response = {",
+		  "            replMsg: result['RESPONSE_MSG'],",
+		  "            bTF: false,",
+		  "        };",
+		  "        if (result[\"RESPONSE_CODE\"] == \"000000\") {",
+		  "            response.bTF = true;",
+		  "",
+		  "        } else {",
+		  "            response.bTF = false;",
+		  "",
+		  "        }",
+		  "        return response;",
+		  "    } catch (err) {",
+		  "        store.commit(\"Notification/onOpenAlertBar\", `$2 에러 - [\\${err}]`);",
+		  "    }",
+		  "},"
+		],
+		"description": "serviceFunction"    
+	},
+	"nn-new_nhhtp": {
+        "prefix": "n-newNHttpBase",
+        "body": [
+          "var InNHttpCtrl = new NHttpCtrlBase();",
+          "InNHttpCtrl.SetASync(true);",
+          "InNHttpCtrl.url = g_strSite + \"$1\";",
+          "",
+          "",
+          "InNHttpCtrl.Post({",
+          "    success : function () { ",
+          "        var result = JSON.parse(InNHttpCtrl.Info);",
+          "    },fail : function (x) {          ",
+          "        alert('알 수 없는 이유로 인해 실패하였습니다.')",
+          "    }",
+          "})"
+        ],
+        "description": "nn-new_nhhtp"
+    },
+    "nn-new_nhhtp_add": {
+        "prefix": "n-newNHttpBaseAdd",
+        "body": [
+          "InNHttpCtrl.AddData ( \"$1\", \"$2\" );"
+        ],
+        "description": "nn-new_nhhtp_add"
+    },
+    "nn-nhhtp_add": {
+        "prefix": "n-NHttpBaseAdd",
+        "body": [
+          "NHttpCtrl.AddData ( \"$1\", \"$2\" );"
+        ],
+        "description": "nn-nhhtp_add"
+    },
+	"nn-nhhtp": {
+		"prefix": "n-NHttpBase",
+		"body": [
+			"NHttpCtrl.url = g_strSite + $1 + $2;",
+			"",
+			"if ( false == NHttpCtrl.Post() ) {",
+			"    // post 실패 이유를 알려준다.",
+			"    NHttpCtrl.showPostErrInfo();",		
+			"    if (typeof(_callBackFunc) == \"function\") {",
+			"        _callBackFunc(false);",
+			"    }",
+			"    return false;",
+			"}",
+			"if ( CONSTSTR_PROTSTATUS_ERROR != NHttpCtrl.Status ) {",
+			"    // 성공",
+			"",
+			"} else{",
+			"    // 실패",
+			"    NHttpCtrl.showDetailErrInfo();",
+			"    if (typeof _callBackFunc == \"function\") {",
+			"        _callBackFunc(false);",
+			"    }",
+			"    return false;",
+			"}"
+		],
+		"description": "nn-nhhtp"
+	},
+	"nn-nalert": {
+		"prefix": "n-alert",
+		"body": [
+		  "NFAlert(XFLocale.getString(\"lang.flow\", \"$1\"));"
+		],
+		"description": "nn-nalert"
+	},
+	"nn-fileMng": {
+		"prefix": "n-isFileMng",
+		"body": [
+		  "if(isIE() && NFGetOption(\"./site_config/use_filemng\") == \"yes\") {",
+		  "    $1",
+		  "}else{",
+		  "",
+		  "}"
+		],
+		"description": "nn-fileMng"
+	},
+	"nn-DOMMakeNodeFromString": {
+		"prefix": "n-DOMMakeNodeFromString",
+		"body": [
+		  "DOMMakeNodeFromString($1)"
+		],
+		"description": "DOMMakeNodeFromString"
+	},
+	"nn-DOMGetNode": {
+		"prefix": "n-DOMGetNode",
+		"body": [
+		  "DOMGetNode($1,$2)"
+		],
+		"description": "DOMGetNode"
+	},
+	"nn-DOMGetText": {
+		"prefix": "n-DOMGetText",
+		"body": [
+		  "DOMGetText($1)"
+		],
+		"description": "nn-DOMGetText"
+	},
+	"nn-DOMGetValue": {
+		"prefix": "n-DOMGetValue",
+		"body": [
+		  "DOMGetValue($1,$2)"
+		],
+		"description": "nn-DOMGetValue"
+	},
+	"nn-NFGetOption": {
+		"prefix": "n-ngopt",
+		"body": [
+		  "NFGetOption($1)"
+		],
+		"description": "nn-NFGetOption"
+	},
+	"nn-locale": {
+		"prefix": "n-locale",
+		"body": [
+		  "XFLocale.getString(\"lang.flow\", \"$1\")"
+		],
+		"description": "nn-locale"
+	},
+	"nn-DOMCountNode": {
+		"prefix": "n-dcn",
+		"body": [
+			"DOMCountNode($1,$2)"
+		],
+		"description": "nn-DOMCountNode"
+	},
+	"nn-GetOtherInfo": {
+		"prefix": "n-GetOtherInfo",
+		"body": [
+			"GetOtherInfo(${1:selector})"
+		],
+		"description": "nn-GetOtherInfo"
+	},
+	"nn-GetCurSel": {
+		"prefix": "n-GetCurSel",
+		"body": [
+			"GetCurSel()"
+		],
+		"description": "현재 선택된 아이템의 index"
+	},
+	"nn-GetID": {
+		"prefix": "n-GetID",
+		"body": [
+			"GetID()"
+		],
+		"description": "선택된 아이템의 ID"
+	},
+	"nn-openUnscrollWindow": {
+		"prefix": "openUnscrollWindow",
+		"body": [
+		  "openUnscrollWindow(${1:url}, ${2:args}, 600, 300, function(){",
+		  "	result = g_shareOutput.returnValue;",
+		  "});"
+		],
+		"description": "nn-openUnscrollWindow"
+	},
+	"nn-OpenCallBackDialog": {
+		"prefix": "n-OpenCallBackDialog",
+		"body": [
+		  "if ( ${1:xfdialog} == null ) {",
+		  "    ${1:xfdialog} = new XFDialog();",
+		  "}",
+		  "${1:xfdialog}.SetInputData(\"${2:inputkey}\",\"${3:inputvalue}\")",
+		  "${1:xfdialog}.SetDlgUrlSize(${4:url}, 450, 300);",
+		  "${1:xfdialog}.OpenCallBackDialog(\"${1:xfdialog}\", function () {",
+		  "    var returnValue = ${1:xfdialog}.m_strReturnValue;",
+		  "})"
+		],
+		"description": "nn-OpenCallBackDialog"
+	},
+	"nn-GetCurrentDateValue": {
+		"prefix": "n-GetCurrentDateValue",
+		"body": [
+		  "GetCurrentDateValue()"
+		],
+		"description": "YYYYMMDD 형태로 나온다."
+	},
+	"nn-GetCurrentDate": {
+		"prefix": "n-GetCurrentDate",
+		"body": [
+		  "GetCurrentDate()"
+		],
+		"description": "YYYY/MM/DD 형태로 나옴"
+	},
+	"nn-GetInputData": {
+		"prefix": "n-GetInputData",
+		"body": [
+		  "GetInputData(\"${1:inputkey}\")"
+		],
+		"description": "XFDialog에서 데이터를 꺼낼때 사용"
+	},
+	"nn-GetOutputData": {
+		"prefix": "n-GetOutputData",
+		"body": [
+		  "GetOutputData(\"${1:inputkey}\")"
+		],
+		"description": "XFDialog에서 데이터를 꺼낼때 사용"
+	},
+	"nn-SetInputData": {
+		"prefix": "n-SetInputData",
+		"body": [
+		  "SetInputData(\"${1:inputkey}\",\"${2:inputvalue}\")"
+		],
+		"description": "nn-SetInputData"
+	},
+	"nn-SetOutputData": {
+		"prefix": "n-SetOutputData",
+		"body": [
+		  "SetOutputData(\"${1:inputkey}\",\"${2:inputvalue}\")"
+		],
+		"description": "nn-SetOutputData"
+	},
+	"nn-Button_click": {
+		"prefix": "n-Button_click",
+		"body": [
+		  "function Button_click(_eventId) {",
+		  "    switch (_eventId) {",
+		  "        case \"${1:btnId}\":",
+		  "            $2"
+		  "        break;",		  
+		  "    }",
+		  "}"
+		],
+		"description": "nn-Button_click"
+	},
+	"nn-XML2JSON": {
+		"prefix": "n-XML2JSON",
+		"body": [
+		  "var ${1:result} = new XML2JSON(${2:xml});",
+		  "${1:result} = ${1:result}.parse()"
+		],
+		"description": "nanum/cflow/util/js/xml2json.js"
+	},
+	"nn-JSON2XML": {
+		"prefix": "n-JSON2XML",
+		"body": [
+		  "var ${1:result} = new JSON2XML(${2:json});",
+		  "${1:result} = ${1:result}.parse({rootTag : 'root',	lineEnding : '\\n'})"
+		],
+		"description": "nanum/cflow/util/js/xml2json.js"
+	},
+	"nn-SetItemText": {
+		"prefix": "n-SetItemText",
+		"body": [
+		  "SetItemText(${1:index}, ${2:0}, \"${3:order}\");  "
+		],
+		"description": "list_component에 사용"
+	},
+	"nn-SetQueryUserData": {
+		"prefix": "n-SetQueryUserData",
+		"body": [
+		  "SetQueryUserData(${1:index}, ${2:key}, \"${3:value}\");  "
+		],
+		"description": "list_component에 사용"
+	},
+	"nn-SetUserData": {
+		"prefix": "n-SetUserData",
+		"body": [
+		  "SetUserData(${1:index}, ${2:xmlString})"
+		],
+		"description": "list_component에 사용"
+	},
+	"nn-InsertItem": {
+		"prefix": "n-InsertItem",
+		"body": [
+		  "InsertItem(${1:index})"
+		],
+		"description": "list_component에 사용"
+	},
+
+
 ------------------------------------------------------------------------------------------------
 java.json  
-"ControllerComment": {
-    "prefix": "ControllerComment",
+    "ControllerComment": {
+      "prefix": "ControllerComment",
+      "body": [
+          "/**",
+          " * <pre>",
+          " *   ${TM_FILENAME_BASE} Controller",
+          " * </pre>",
+          " * @author In-seong Hwang",
+          " * @since ${CURRENT_YEAR}.${CURRENT_MONTH}.${CURRENT_DATE}",
+          " * @version 1.0",
+          " */"
+      ],
+      "description": "comment"
+  },
+  "ServiceComment": {
+      "prefix": "ServiceComment",
+      "body": [
+          "/**",
+          " * <pre>",
+          " *   ${TM_FILENAME_BASE} Service",
+          " * </pre>",
+          " * @author In-seong Hwang",
+          " * @since ${CURRENT_YEAR}.${CURRENT_MONTH}.${CURRENT_DATE}",
+          " * @version 1.0",
+          " */"
+      ],
+      "description": "comment"
+  },
+  "serviceMethod": {
+    "prefix": "serviceMethod",
     "body": [
-        "/**",
-        " * <pre>",
-        " *   ${TM_FILENAME_BASE} Controller",
-        " * </pre>",
-        " * @author In-seong Hwang",
-        " * @since ${CURRENT_YEAR}.${CURRENT_MONTH}.${CURRENT_DATE}",
-        " * @version 1.0",
-        " */"
+      "@Override",
+      "@Transactional",
+      "public PBox $1(PBox pBox) {",
+      "",
+      "    PBox result = new PBox();",
+      "    String RESPONSE_CODE = \"000000\";",
+      "    StringBuilder refreshToken = null;",
+      "    ",
+      "    try {",
+      "        if () {",
+      "            throw new BizException(\"\");",
+      "        }",
+      "",
+      "    } catch (BizException biz) {",
+      "        rollBack();",
+      "        RESPONSE_CODE = biz.getErrCode();",
+      "        biz.printStackTrace();",
+      "    } catch (Exception e) {",
+      "        rollBack();",
+      "        RESPONSE_CODE = \"\";",
+      "        e.printStackTrace();",
+      "    } finally {",
+      "        result.set(\"RESPONSE_CODE\", RESPONSE_CODE);",
+      "        result.set(\"RESPONSE_MSG\", EErrorCodeType.searchAndMsg(RESPONSE_CODE));",
+      "    }",
+      "    return result;",
+      "}"
     ],
-    "description": "comment"
-},
-"ServiceComment": {
-    "prefix": "ServiceComment",
+    "description": "serviceMethod"
+  },
+  "controllerMethod": {
+    "prefix": "controllerMethod",
     "body": [
-        "/**",
-        " * <pre>",
-        " *   ${TM_FILENAME_BASE} Service",
-        " * </pre>",
-        " * @author In-seong Hwang",
-        " * @since ${CURRENT_YEAR}.${CURRENT_MONTH}.${CURRENT_DATE}",
-        " * @version 1.0",
-        " */"
+      "@ResponseBody",
+      "@RequestMapping(value = {\"$1\"}, method = {RequestMethod.POST,RequestMethod.GET})",
+      "public ModelAndView $2(@ModelAttribute(\"initBoxs\")PBox pBox,HttpServletRequest request) {",
+      "    ModelAndView mv = new ModelAndView(\"jsonView\");",
+      "    PBox result = $3;",
+      "    mv.addObject(\"result\", result);        ",
+      "    return mv;",
+      "}",
+      ""
     ],
-    "description": "comment"
-},
-"controllerMethod": {
-  "prefix": "controllerMethod",
-  "body": [
-    "@ResponseBody",
-    "@RequestMapping(value = {\"$1\"}, method = {RequestMethod.POST,RequestMethod.GET})",
-    "public ModelAndView $2(@ModelAttribute(\"initBoxs\")PBox pBox,HttpServletRequest request) {",
-    "    ModelAndView mv = new ModelAndView(\"jsonView\");",
-    "    PBox result = $3;",
-    "    mv.addObject(\"result\", result);        ",
-    "    return mv;",
-    "}",
-    ""
-  ],
-  "description": "controllerMethod"
-},
-"serviceMethod": {
-  "prefix": "serviceMethod",
-  "body": [
-    "@Override",
-    "@Transactional",
-    "public PBox $1(PBox pBox) {",
-    "",
-    "    PBox result = new PBox();",
-    "    String RESPONSE_CODE = \"000000\";",
-    "    StringBuilder refreshToken = null;",
-    "    ",
-    "    try {",
-    "        if () {",
-    "            throw new BizException(\"\");",
-    "        }",
-    "",
-    "    } catch (BizException biz) {",
-    "        rollBack();",
-    "        RESPONSE_CODE = biz.getErrCode();",
-    "        biz.printStackTrace();",
-    "    } catch (Exception e) {",
-    "        rollBack();",
-    "        RESPONSE_CODE = \"\";",
-    "        e.printStackTrace();",
-    "    } finally {",
-    "        result.set(\"RESPONSE_CODE\", RESPONSE_CODE);",
-    "        result.set(\"RESPONSE_MSG\", EErrorCodeType.searchAndMsg(RESPONSE_CODE));",
-    "    }",
-    "    return result;",
-    "}"
-  ],
-  "description": "serviceMethod"
-},
-"nn-try_catch-servlet": {
+    "description": "controllerMethod"
+  },
+  /* nn - 나눔기술  */
+  "nn-println": {
+      "prefix": "n-println",
+      "body": [
+        "out.println( XFServletReturnMsg.getMessage( $1 ) );"
+      ],
+      "description": "nn-println"
+  },
+  "nn-receiver-println": {
+    "prefix": "n-receiver-println",
+    "body": [
+      "out.print( Receiver.getSuccessXML( $1 ) );"
+    ],
+    "description": "n-receiver-println"
+  },
+  "nn-try_catch-servlet": {
     "prefix": "n-trycatch-servlet",
     "body": [
       "try {        ",
       "    $1",
-      "} catch ( NNException e ) {",
-      "    out.print(e.getXml());",
-      "    ",
+      "} catch ( NNException ne ) {",
+      "    out.print(ne.getXml());",
       "} catch ( Exception e ) {",
       "    throw e;",
       "} finally{",
@@ -333,35 +868,71 @@ java.json
     ],
     "description": "nn-try_catch"
 },
-"nn-println": {
-    "prefix": "n-println",
+  "nn-try_catch": {
+      "prefix": "n-trycatch",
+      "body": [
+        "try {        ",
+        "    $1",
+        "} catch ( NNException ne ) {",
+        "    _logger.exception(ne);",
+        "    throw ne",
+        "} catch ( Exception e ) {",
+        "    _logger.exception(e);",
+        "    throw e;",
+        "} finally{",
+        "}"
+      ],
+      "description": "nn-try_catch"
+  },
+  "nn-try_catch_connection": {
+    "prefix": "n-trycatch－connection",
     "body": [
-      "out.println( XFServletReturnMsg.getMessage( $1 ) );"
+      " try {",
+      "     conn = SystemManager.getConnection( \"xf\" );",
+      "     ...",
+      "	SQLUtil.commit(conn);",
+      " } catch ( SQLException se ) {",
+      "	 SQLUtil.rollback(conn);",
+      "	 _logger.exception(se);",
+      "     throw se;",
+      " } catch ( Exception e ) {",
+      "	 SQLUtil.rollback(conn);",
+      "	 _logger.exception(e);",
+      "     throw e;",
+      " } finally {",
+      "     SQLUtil.close( conn );",
+      " }"
     ],
-    "description": "nn-println"
-},
-"nn-receiver-println": {
-  "prefix": "n-receiver-println",
-  "body": [
-    "out.print( Receiver.getSuccessXML( $1 ) );"
-  ],
-  "description": "n-receiver-println"
-},
-"nn-try_catch": {
-    "prefix": "n-trycatch",
+    "description": "nn-try_catch_connection"
+  },
+  "nn-connection": {
+    "prefix": "n-connection",
     "body": [
-      "try {        ",
-      "    $1",
-      "} catch ( NNException e ) {",
-      "    throw e",
-      "} catch ( Exception e ) {",
-      "    throw e;",
-      "} finally{",
-      "    // SQLUtil.close();",
-      "}"
+      "conn = SystemManager.getConnection(\"$1\");"
     ],
-    "description": "nn-try_catch"
-},
+    "description": "nn-connection"
+  },
+  "nn-commit": {
+    "prefix": "n-commit",
+    "body": [
+      "SQLUtil.commit(conn);"
+    ],
+    "description": "nn-commit"
+  },
+  "nn-rollback": {
+    "prefix": "n-rollback",
+    "body": [
+      "SQLUtil.rollback(conn);"
+    ],
+    "description": "nn-rollback"
+  },
+  "nn-close": {
+    "prefix": "n-close",
+    "body": [
+      "SQLUtil.close(conn);"
+    ],
+    "description": "nn-close"
+  },
 
 ------------------------------------------------------------------------------------------------
 xml.json
@@ -486,5 +1057,5 @@ xml.json
 },
 ------------------------------------------------------------------------------------------------
 vscode theme custom
-"workbench.colorCustomizations": {"activityBar.background":"#003847","badge.background":"#047aa6","button.background":"#2aa19899","debugExceptionWidget.background":"#00212b","debugExceptionWidget.border":"#ab395b","debugToolBar.background":"#00212b","dropdown.background":"#00212b","dropdown.border":"#2aa19899","editor.background":"#002b36","editor.lineHighlightBackground":"#073642","editor.selectionBackground":"#42615d","editor.selectionHighlightBackground":"#005a6faa","editor.wordHighlightBackground":"#004454aa","editor.wordHighlightStrongBackground":"#005a6faa","editorCursor.foreground":"#d30102","editorGroup.border":"#00212b","editorGroup.dropBackground":"#2aa19844","editorGroupHeader.tabsBackground":"#004052","editorHoverWidget.background":"#004052","editorIndentGuide.activeBackground":"#c3e1e180","editorIndentGuide.background":"#93a1a180","editorLineNumber.activeForeground":"#949494","editorMarkerNavigationError.background":"#ab395b","editorMarkerNavigationWarning.background":"#5b7e7a","editorWhitespace.foreground":"#93a1a180","editorWidget.background":"#00212b","errorForeground":"#ffeaea","focusBorder":"#2aa19899","input.background":"#003847","input.foreground":"#93a1a1","input.placeholderForeground":"#93a1a1aa","inputOption.activeBorder":"#2aa19899","inputValidation.errorBackground":"#571b26","inputValidation.errorBorder":"#a92049","inputValidation.infoBackground":"#052730","inputValidation.infoBorder":"#363b5f","inputValidation.warningBackground":"#5d5938","inputValidation.warningBorder":"#9d8a5e","list.activeSelectionBackground":"#005a6f","list.dropBackground":"#00445488","list.highlightForeground":"#1ebcc5","list.hoverBackground":"#004454aa","list.inactiveSelectionBackground":"#00445488","minimap.selectionHighlight":"#274642","panel.border":"#2b2b4a","peekView.border":"#2b2b4a","peekViewEditor.background":"#10192c","peekViewEditor.matchHighlightBackground":"#7744aa40","peekViewResult.background":"#00212b","peekViewTitle.background":"#00212b","pickerGroup.border":"#2aa19899","pickerGroup.foreground":"#2aa19899","ports.iconRunningProcessForeground":"#369432","progressBar.background":"#047aa6","quickInputList.focusBackground":"#005a6f","selection.background":"#2aa19899","sideBar.background":"#00212b","sideBarTitle.foreground":"#93a1a1","statusBar.background":"#00212b","statusBar.debuggingBackground":"#00212b","statusBar.foreground":"#93a1a1","statusBar.noFolderBackground":"#00212b","statusBarItem.prominentBackground":"#003847","statusBarItem.prominentHoverBackground":"#003847","statusBarItem.remoteBackground":"#2aa19899","tab.activeBackground":"#002b37","tab.activeForeground":"#d6dbdb","tab.border":"#003847","tab.inactiveBackground":"#004052","tab.inactiveForeground":"#93a1a1","tab.lastPinnedBorder":"#2aa19844","terminal.ansiBlack":"#073642","terminal.ansiBlue":"#268bd2","terminal.ansiBrightBlack":"#002b36","terminal.ansiBrightBlue":"#839496","terminal.ansiBrightCyan":"#93a1a1","terminal.ansiBrightGreen":"#586e75","terminal.ansiBrightMagenta":"#6c71c4","terminal.ansiBrightRed":"#cb4b16","terminal.ansiBrightWhite":"#fdf6e3","terminal.ansiBrightYellow":"#657b83","terminal.ansiCyan":"#2aa198","terminal.ansiGreen":"#859900","terminal.ansiMagenta":"#d33682","terminal.ansiRed":"#dc322f","terminal.ansiWhite":"#eee8d5","terminal.ansiYellow":"#b58900","titleBar.activeBackground":"#002c39"},
+"workbench.colorCustomizations": {"activityBar.background": "#003847", "badge.background": "#047aa6", "button.background": "#2aa19899", "debugExceptionWidget.background": "#00212b", "debugExceptionWidget.border": "#ab395b", "debugToolBar.background": "#00212b", "dropdown.background": "#00212b", "dropdown.border": "#2aa19899", "editor.background": "#002b36", "editor.lineHighlightBackground": "#073642", "editor.selectionBackground": "#42615d", "editor.selectionHighlightBackground": "#005a6faa", "editor.wordHighlightBackground": "#004454aa", "editor.wordHighlightStrongBackground": "#005a6faa", "editorCursor.foreground": "#d30102", "editorGroup.border": "#00212b", "editorGroup.dropBackground": "#2aa19844", "editorGroupHeader.tabsBackground": "#004052", "editorHoverWidget.background": "#004052", "editorIndentGuide.activeBackground1": "#c3e1e180", "editorIndentGuide.background1": "#93a1a180", "editorLineNumber.activeForeground": "#949494", "editorMarkerNavigationError.background": "#ab395b", "editorMarkerNavigationWarning.background": "#5b7e7a", "editorWhitespace.foreground": "#93a1a180", "editorWidget.background": "#00212b", "errorForeground": "#ffeaea", "focusBorder": "#2aa19899", "input.background": "#003847", "input.foreground": "#93a1a1", "input.placeholderForeground": "#93a1a1aa", "inputOption.activeBorder": "#2aa19899", "inputValidation.errorBackground": "#571b26", "inputValidation.errorBorder": "#a92049", "inputValidation.infoBackground": "#052730", "inputValidation.infoBorder": "#363b5f", "inputValidation.warningBackground": "#5d5938", "inputValidation.warningBorder": "#9d8a5e", "list.activeSelectionBackground": "#005a6f", "list.dropBackground": "#00445488", "list.highlightForeground": "#1ebcc5", "list.hoverBackground": "#004454aa", "list.inactiveSelectionBackground": "#00445488", "minimap.selectionHighlight": "#274642", "panel.border": "#2b2b4a", "peekView.border": "#2b2b4a", "peekViewEditor.background": "#10192c", "peekViewEditor.matchHighlightBackground": "#7744aa40", "peekViewResult.background": "#00212b", "peekViewTitle.background": "#00212b", "pickerGroup.border": "#2aa19899", "pickerGroup.foreground": "#2aa19899", "ports.iconRunningProcessForeground": "#369432", "progressBar.background": "#047aa6", "quickInputList.focusBackground": "#005a6f", "selection.background": "#2aa19899", "sideBar.background": "#00212b", "sideBarTitle.foreground": "#93a1a1", "statusBar.background": "#00212b", "statusBar.debuggingBackground": "#00212b", "statusBar.foreground": "#93a1a1", "statusBar.noFolderBackground": "#00212b", "statusBarItem.prominentBackground": "#003847", "statusBarItem.prominentHoverBackground": "#003847", "statusBarItem.remoteBackground": "#2aa19899", "tab.activeBackground": "#002b37", "tab.activeForeground": "#d6dbdb", "tab.border": "#003847", "tab.inactiveBackground": "#004052", "tab.inactiveForeground": "#93a1a1", "tab.lastPinnedBorder": "#2aa19844", "terminal.ansiBlack": "#073642", "terminal.ansiBlue": "#268bd2", "terminal.ansiBrightBlack": "#002b36", "terminal.ansiBrightBlue": "#839496", "terminal.ansiBrightCyan": "#93a1a1", "terminal.ansiBrightGreen": "#586e75", "terminal.ansiBrightMagenta": "#6c71c4", "terminal.ansiBrightRed": "#cb4b16", "terminal.ansiBrightWhite": "#fdf6e3", "terminal.ansiBrightYellow": "#657b83", "terminal.ansiCyan": "#2aa198", "terminal.ansiGreen": "#859900", "terminal.ansiMagenta": "#d33682", "terminal.ansiRed": "#dc322f", "terminal.ansiWhite": "#eee8d5", "terminal.ansiYellow": "#b58900", "titleBar.activeBackground": "#002c39"},
 ------------------------------------------------------------------------------------------------
